@@ -1,8 +1,8 @@
 # -*- coding:utf-8 -*-
 '''
-6、身份证校验 id_card
+7、身份证校验 id_card
 @Author:jianghuyixiao,2018-11-20
-请求方式：post
+请求方式：post,get
 入参：cardno
 出参：errcode，msg,reson
 地址：http://127.0.0.1:7783/id_card?card_no=110101199003075656
