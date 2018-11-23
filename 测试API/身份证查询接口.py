@@ -21,9 +21,23 @@ def id_card():
         for i in u[:-2:]:
             isdigit = i.isdigit()
             if isdigit:
-                sum = int(u[0]) * 7 + int(u[1]) * 9 + int(u[2]) * 10 + int(u[3]) * 5 +int(u[4]) * 8 + int(u[5]) * 4 + int(u[6]) * 2 + int(u[7]) * 1\
-                      + int(u[8]) * 6 + int(u[9]) * 3 + int(u[10]) * 7 + int(u[11]) * 9 + int(u[12]) * 10 + int(u[13]) * 5 + int(u[14]) * 8 + int(u[15]) * 4 + int(u[16]) * 2
+                sum = int(u[0]) * 7 + int(u[1]) * 9 + int(u[2]) * 10 + int(u[3]) * 5 + int(u[4]) * 8 + int(u[5]) * 4 + \
+                      int(u[6]) * 2 + int(u[7]) * 1 + int(u[8]) * 6 + int(u[9]) * 3 + int(u[10]) * 7 + int(u[11]) * 9+ \
+                      int(u[12]) * 10 + int(u[13]) * 5 + int(u[14]) * 8 + int(u[15]) * 4 + int(u[16]) * 2
                 print(sum,type(sum))
+                if sum % 11 == 2:
+                    cal_last_str = 88
+                    # print(type(u[-1]))
+                    if ord(u[-1]) == cal_last_str:
+                        return jsonify({"resultcode": 200,
+                                        "reason": "正确的的返回",
+                                        "msg": "身份证号码有效"
+                                        })
+                    else:
+                        return jsonify({"resultcode": 203,
+                                        "reason": "错误的返回",
+                                        "msg": "身份证号码无效"
+                                        })
                 if sum % 11 == 0:
                     cal_last_str = 1
                     if int(u[-1]) == cal_last_str:
@@ -38,18 +52,6 @@ def id_card():
                                         })
                 if sum % 11 == 1:
                     cal_last_str = 0
-                    if int(u[-1]) != cal_last_str:
-                        return jsonify({"resultcode": 200,
-                                        "reason": "正确的的返回",
-                                        "msg": "身份证号码有效"
-                                        })
-                    else:
-                        return jsonify({"resultcode": 203,
-                                        "reason": "错误的返回",
-                                        "msg": "身份证号码无效"
-                                        })
-                if sum % 11 == 2:
-                    cal_last_str = 'X'
                     if int(u[-1]) == cal_last_str:
                         return jsonify({"resultcode": 200,
                                         "reason": "正确的的返回",
@@ -60,6 +62,7 @@ def id_card():
                                         "reason": "错误的返回",
                                         "msg": "身份证号码无效"
                                         })
+
                 if sum % 11 == 3:
                     cal_last_str = 9
                     if int(u[-1]) == cal_last_str:
@@ -74,7 +77,7 @@ def id_card():
                                         })
                 if sum % 11 == 4:
                     cal_last_str = 8
-                    if int(u[-1]) != cal_last_str:
+                    if int(u[-1]) == cal_last_str:
                         return jsonify({"resultcode": 200,
                                         "reason": "正确的的返回",
                                         "msg": "身份证号码有效"
@@ -135,16 +138,15 @@ def id_card():
                 if sum % 11 == 9:
                     cal_last_str = 3
                     if int(u[-1]) == cal_last_str:
-                        print({"resultcode": 200,
+                        return jsonify({"resultcode": 200,
                                         "reason": "正确的的返回",
                                         "msg": "身份证号码有效"
                                         })
                     else:
-                        print({"resultcode": 203,
+                        return jsonify({"resultcode": 203,
                                         "reason": "错误的返回",
                                         "msg": "身份证号码无效"
                                         })
-
 
                 if sum % 11 == 10:
                     cal_last_str = 2
@@ -170,3 +172,4 @@ def id_card():
                         "msg": "身份证号码的长度必须是18"
                         })
 sever.run(port = 7783,debug = True)
+
